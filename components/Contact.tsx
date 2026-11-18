@@ -33,7 +33,7 @@ const FacebookIcon = (props: any) => (
   </svg>
 );
 
-// Pita CTA hijau tua + detail kontak — mengikuti situs referensi.
+// Pita CTA kobalt + kartu kontak ala Linework: outline tebal, bayangan keras.
 export default function Contact() {
   const { t } = useLanguage();
 
@@ -48,32 +48,29 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="bg-page px-6 py-[30px]">
-      <div className="mx-auto w-full max-w-[1160px]">
-        <div className="flex flex-col justify-between gap-6 overflow-hidden rounded-[6px] bg-pine p-[26px] text-cream md:flex-row md:items-center">
+    <section id="contact" className="bg-paper px-5 py-[64px]">
+      <div className="mx-auto w-full max-w-[1240px]">
+        <div className="flex flex-col justify-between gap-6 overflow-hidden rounded-[18px] border-[3px] border-ink bg-cobalt p-7 text-art shadow-lw md:flex-row md:items-center">
           <div>
-            <span className="block text-[10px] font-bold uppercase tracking-[1.5px] text-gold">
+            <span className="block text-[11px] font-bold uppercase tracking-[2px] text-sun">
               {t.nav.contact}
             </span>
-            <h2 className="mt-2 font-serif text-[27px] font-semibold leading-tight">{t.cta.title}</h2>
-            <p className="mt-1 text-[13px] leading-[1.6] text-cream/80">
+            <h2 className="mt-2 font-display text-[clamp(26px,3.5vw,36px)] font-extrabold leading-tight">{t.cta.title}</h2>
+            <p className="mt-2 max-w-[520px] text-[14px] leading-[1.6] text-art/85">
               {t.cta.subtitle} {t.cta.desc}
             </p>
           </div>
-          <a
-            href="mailto:dwimahdini12@gmail.com"
-            className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-[5px] bg-cream px-5 text-[13px] font-bold text-pine transition-colors hover:text-gold"
-          >
+          <a href="mailto:dwimahdini12@gmail.com" className="btn-lw btn-sun shrink-0">
             {t.cta.button}
           </a>
         </div>
 
-        <h2 className="mb-2 mt-10 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-leaf">
-          {t.contact.title}
+        <h2 className="mb-3 mt-12 font-display text-[clamp(34px,5vw,56px)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
+          <span className="scribble">{t.contact.title}</span>
         </h2>
-        <p className="mb-6 max-w-[680px] text-[14px] leading-[1.7] text-muted">{t.contact.desc}</p>
+        <p className="mb-7 max-w-[680px] text-[15px] leading-[1.7] text-muted">{t.contact.desc}</p>
 
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {contactLinks.map((contact, index) => (
             <motion.div
               key={contact.name}
@@ -86,12 +83,14 @@ export default function Contact() {
                 href={contact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-[4px] border border-line bg-page p-3 transition-colors hover:border-gold/60"
+                className="lw-card lw-card-hover flex items-center gap-3 p-4"
               >
-                <contact.icon className="h-5 w-5 shrink-0 text-leaf" />
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[10px] border-[3px] border-ink bg-sun text-ink shadow-lw-sm">
+                  <contact.icon className="h-5 w-5" />
+                </span>
                 <span className="grid min-w-0 gap-1">
-                  <small className="text-[10px] font-semibold uppercase tracking-wide text-muted">{contact.name}</small>
-                  <strong className="truncate text-[13px] font-semibold text-fg">{contact.value}</strong>
+                  <small className="text-[10px] font-bold uppercase tracking-[1.4px] text-muted">{contact.name}</small>
+                  <strong className="truncate text-[14px] font-bold text-ink">{contact.value}</strong>
                 </span>
               </a>
             </motion.div>

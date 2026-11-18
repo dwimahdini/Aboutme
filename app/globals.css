@@ -3,82 +3,180 @@
 /* Varian dark untuk next-themes (class="dark" di <html>). */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Design system mengikuti situs referensi:
-   Terang: krem #f7f3ea, hijau tua #004d46, tinta #092f2d,
-   emas #d6a84f, koral #c96a55, malam #080a09 — tanpa area gelap
-   di mode terang (hero, topbar, dan kartu ikut terang).
-   Gelap: permukaan malam #080a09, teks krem, hijau terang #57b8a6
-   untuk teks hijau, garis dan tint hijau yang disesuaikan.
-   Font: Inter (tampilan, sans modern bersih) + Playfair Display (judul serif). */
+/* Design system mengadaptasi Linework (uicookies.com, gratis):
+   kertas off-white, tiga tinta spot (tomat, kobalt, matahari),
+   outline tebal 3px dan bayangan keras (hard shadow).
+   Font: Bricolage Grotesque (display) + DM Sans (body).
+   Mode gelap membalik kertas dan tinta, tinta spot tetap. */
 :root {
-  --page: #f7f3ea;
-  --raise: #fbf8f1;
-  --fg: #092f2d;
-  --leaf: #004d46;
-  --faint: color-mix(in srgb, #092f2d 70%, #f7f3ea);
-  --edge: color-mix(in srgb, #004d46 14%, #f7f3ea);
-  --tint: color-mix(in srgb, #004d46 9%, #f7f3ea);
-  --shade: color-mix(in srgb, #004d46 8%, #f7f3ea);
-  --grid-line: rgba(9, 47, 45, 0.05);
+  --paper: #f4eee2;
+  --paper-2: #ebe2d0;
+  --art-paper: #fffaf0;
+  --ink: #17130e;
+  --muted: #5b5147;
+  --tomato: #ef4a2f;
+  --tomato-deep: #c2361d;
+  --cobalt: #2446d8;
+  --sun: #ffc53d;
+  --shadow-color: #17130e;
+  --shadow: 6px 6px 0 var(--shadow-color);
+  --shadow-sm: 4px 4px 0 var(--shadow-color);
   color-scheme: light;
 }
 
 :root.dark {
-  --page: #080a09;
-  --raise: #101512;
-  --fg: #f6f5f1;
-  --leaf: #57b8a6;
-  --faint: #a9ada6;
-  --edge: rgba(255, 255, 255, 0.14);
-  --tint: rgba(0, 77, 70, 0.45);
-  --shade: #0e110f;
-  --grid-line: rgba(255, 255, 255, 0.04);
+  --paper: #17130e;
+  --paper-2: #211a12;
+  --art-paper: #241d15;
+  --ink: #f4eee2;
+  --muted: #b3a693;
+  --tomato: #ff6b4a;
+  --tomato-deep: #ff9a7a;
+  --cobalt: #8ba4ff;
+  --sun: #ffc53d;
+  --shadow-color: rgba(244, 238, 226, 0.25);
+  --shadow: 6px 6px 0 var(--shadow-color);
+  --shadow-sm: 4px 4px 0 var(--shadow-color);
   color-scheme: dark;
 }
 
 @theme inline {
-  /* Token yang mengikuti tema (berubah saat .dark aktif). */
-  --color-page: var(--page);
-  --color-raise: var(--raise);
-  --color-fg: var(--fg);
-  --color-leaf: var(--leaf);
-  --color-muted: var(--faint);
-  --color-line: var(--edge);
-  --color-soft: var(--tint);
-  --color-cream-dark: var(--shade);
-  /* Token tetap — sama di kedua tema. */
-  --color-cream: #f7f3ea;
-  --color-paper: #f7f3ea;
-  --color-ink: #092f2d;
-  --color-pine: #004d46;
-  --color-gold: #d6a84f;
-  --color-coral: #c96a55;
-  --color-night: #080a09;
-  --color-mist: #cbcec8;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-playfair), Georgia, serif;
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-art: var(--art-paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-tomato: var(--tomato);
+  --color-tomato-deep: var(--tomato-deep);
+  --color-cobalt: var(--cobalt);
+  --color-sun: var(--sun);
+  --font-display: var(--font-bricolage), "Arial Narrow", system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background: var(--color-page);
-  color: var(--color-fg);
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Tekstur grain kertas di atas seluruh halaman — seperti Linework. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .09 0 0 0 0 .07 0 0 0 0 .05 0 0 0 1.5 -.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 }
 
 ::selection {
-  background: color-mix(in srgb, #d6a84f 45%, #f7f3ea);
-  color: #092f2d;
+  background: var(--color-sun);
+  color: var(--color-ink);
 }
 
-/* Grid halus di hero, memudar ke bawah — seperti referensi.
-   Garisnya mengikuti tema (gelap samar di mode terang, putih samar di mode gelap). */
-.hero-grid-overlay {
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 82px 82px;
-  -webkit-mask-image: linear-gradient(#000 0%, transparent 94%);
-  mask-image: linear-gradient(#000 0%, transparent 94%);
+/* Coretan tomat di bawah kata — ciri khas Linework. */
+.scribble {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9C30 3 52 12 80 7S140 2 198 8' fill='none' stroke='%23ef4a2f' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") bottom / 100% 0.32em no-repeat;
+  padding-bottom: 0.18em;
+}
+
+/* Bayangan keras khas Linework. */
+.shadow-lw {
+  box-shadow: var(--shadow);
+}
+.shadow-lw-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tombol Linework: outline 3px, bayangan keras, naik saat hover. */
+.btn-lw {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px solid var(--color-ink);
+  border-radius: 10px;
+  padding: 0.65rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+.btn-lw:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow);
+}
+.btn-lw:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--shadow-color);
+}
+.btn-ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.btn-tomato {
+  background: var(--color-tomato);
+  color: var(--color-art);
+}
+.btn-cobalt {
+  background: var(--color-cobalt);
+  color: var(--color-art);
+}
+.btn-sun {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+.btn-paper {
+  background: var(--color-art);
+  color: var(--color-ink);
+}
+
+/* Chip Linework: outline 2px, huruf kapital kecil. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+.chip-tom {
+  background: var(--color-tomato);
+  color: var(--color-art);
+}
+.chip-cob {
+  background: var(--color-cobalt);
+  color: var(--color-art);
+}
+.chip-sun {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+.chip-paper {
+  background: var(--color-art);
+  color: var(--color-ink);
+}
+
+/* Kartu Linework: kertas seni, outline 3px, bayangan keras. */
+.lw-card {
+  background: var(--color-art);
+  border: 3px solid var(--color-ink);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.lw-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--shadow-color);
 }
 
 /* Lenis */

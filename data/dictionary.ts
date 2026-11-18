@@ -219,7 +219,7 @@ export const dictionaries = {
       address: "Alamat",
     },
     footer: {
-      note: "Dibangun dengan Next.js & Tailwind CSS. Template dasar: Developer Portfolio (MIT) — konten dan data milik Dwi Mahdini.",
+      note: "Dibangun dengan Next.js & Tailwind CSS. Desain terinspirasi Linework (uicookies.com, gratis) — konten dan data milik Dwi Mahdini.",
     },
   },
   en: {
@@ -436,7 +436,7 @@ export const dictionaries = {
       address: "Address",
     },
     footer: {
-      note: "Built with Next.js & Tailwind CSS. Base template: Developer Portfolio (MIT) — content and data belong to Dwi Mahdini.",
+      note: "Built with Next.js & Tailwind CSS. Design inspired by Linework (uicookies.com, free) — content and data belong to Dwi Mahdini.",
     },
   },
 };

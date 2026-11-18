@@ -4,8 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "./Providers";
 
-// Angka sorotan menghitung naik saat masuk layar — gaya referensi:
-// angka besar Playfair hijau tua, label abu-abu, tanpa kartu.
+// Angka sorotan menghitung naik saat masuk layar — gaya Linework:
+// angka besar Bricolage dengan warna tinta spot, di dalam kotak kertas
+// ber-outline tebal dan bayangan keras.
 function CountUp({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -34,13 +35,15 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   );
 }
 
+const numberColors = ["text-tomato", "text-cobalt", "text-ink", "text-tomato-deep"];
+
 export default function About() {
   const { t } = useLanguage();
 
   return (
-    <section aria-label="Highlights" className="bg-page px-6 pb-4 pt-10">
-      <div className="mx-auto w-full max-w-[1160px] border-t border-line pt-8">
-        <div className="flex flex-wrap gap-x-12 gap-y-6">
+    <section aria-label="Highlights" className="bg-paper px-5 pb-2 pt-10">
+      <div className="mx-auto w-full max-w-[1240px]">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {t.hero.stats.map((stat, index) => {
             const match = stat.value.match(/^(\d+)(\+?)$/);
             const num = match ? parseInt(match[1], 10) : 0;
@@ -52,11 +55,12 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="lw-card lw-card-hover p-5"
               >
-                <p className="font-serif text-[40px] font-bold leading-none text-leaf">
+                <p className={`font-display text-[44px] font-extrabold leading-none ${numberColors[index % numberColors.length]}`}>
                   <CountUp value={num} suffix={suffix} />
                 </p>
-                <p className="mt-2 max-w-[190px] text-[13px] leading-snug text-muted">{stat.label}</p>
+                <p className="mt-3 text-[13px] font-bold leading-snug text-muted">{stat.label}</p>
               </motion.div>
             );
           })}

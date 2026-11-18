@@ -7,12 +7,16 @@ import Projects from "@/components/Projects";
 import Highlights from "@/components/Highlights";
 import Publications from "@/components/Publications";
 import Process from "@/components/Process";
+import Services from "@/components/Services";
+import TechStrip from "@/components/TechStrip";
+import Quote from "@/components/Quote";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-// Urutan mengikuti situs referensi developer-portfolio-delta-three.vercel.app:
-// Topbar gelap → Hero gelap → strip profil → Sorotan angka → Proyek →
-// Sorotan → Skill → Pengalaman → Publikasi → Proses 5 langkah → CTA Kontak.
+// Urutan mengikuti struktur Linework (uicookies.com):
+// Hero → angka → proyek (filter) → wordmark teknologi → sorotan →
+// skill → layanan & harga → pengalaman → publikasi → proses →
+// kutipan → CTA kontak.
 export default function Home() {
   return (
     <>
@@ -20,11 +24,14 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
+      <TechStrip />
       <Highlights />
       <Skills />
+      <Services />
       <Experience />
       <Publications />
       <Process />
+      <Quote />
       <Contact />
       <Footer />
     </>

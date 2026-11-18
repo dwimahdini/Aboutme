@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, Mail, MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { ArrowRight, Mail, MapPin, GraduationCap, Briefcase, Pencil } from "lucide-react";
 import { useLanguage } from "./Providers";
 
 // Ikon brand tidak lagi tersedia di lucide-react — didefinisikan sendiri.
@@ -20,11 +21,12 @@ const LinkedinIcon = (props: any) => (
   </svg>
 );
 
-// Hero mengikuti tema mengikuti situs referensi: grid halus, status ber-titik emas,
-// tagline sebagai eyebrow, nama besar Inter, foto 1:1 dalam bingkai gelap.
-// Di mode terang hero ikut terang (krem), di mode gelap hero ikut gelap.
+// Hero ala Linework: kertas, headline display Bricolage dengan coretan tomat,
+// papan gambar ber-outline tebal dengan bayangan keras, dan mode sketsa
+// pensil biru untuk foto — seperti mode sketch pada template Linework.
 export default function Hero() {
   const { t, language } = useLanguage();
+  const [sketch, setSketch] = useState(false);
 
   const strip =
     language === "id"
@@ -41,53 +43,46 @@ export default function Hero() {
 
   return (
     <>
-      <section id="about" className="relative overflow-hidden bg-page text-fg">
-        <div className="hero-grid-overlay absolute inset-0" aria-hidden="true" />
-        <div className="relative z-[2] mx-auto grid w-full max-w-[1160px] grid-cols-1 items-center gap-12 px-6 pb-[clamp(52px,7vh,82px)] pt-[calc(76px+clamp(40px,7vh,82px))] lg:min-h-[640px] lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-[clamp(32px,6vw,100px)]">
+      <section id="about" className="relative overflow-hidden bg-paper pt-[calc(76px+clamp(36px,6vh,72px))]">
+        <div className="relative z-[2] mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-12 px-5 pb-[clamp(48px,7vh,80px)] lg:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)] lg:gap-[clamp(32px,5vw,80px)]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-[740px]"
+            className="max-w-[720px]"
           >
-            <p className="mb-[22px] inline-flex items-center gap-2.5 rounded-[4px] border border-line px-3 py-2 text-[9px] font-semibold uppercase tracking-[1.4px] text-muted">
-              <span className="h-2 w-2 rounded-full bg-gold shadow-[0_0_13px_rgba(214,168,79,0.6)]" />
+            <p className="mb-6 inline-flex items-center gap-2.5 rounded-full border-[3px] border-ink bg-art px-4 py-2 text-[11px] font-bold uppercase tracking-[1.6px] text-ink shadow-lw-sm">
+              <span className="h-2.5 w-2.5 rounded-full bg-tomato ring-2 ring-tomato/30" />
               {t.hero.role}
             </p>
-            <span className="mb-[14px] block text-[10px] font-bold uppercase tracking-[1.8px] text-gold">
-              {t.hero.tagline}
-            </span>
-            <h1 className="text-[clamp(54px,7.2vw,96px)] font-bold leading-[0.92] tracking-[-0.075em] text-fg">
-              Dwi Mahdini
+            <h1 className="font-display text-[clamp(56px,8vw,104px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-ink">
+              Dwi <span className="scribble">Mahdini</span>
             </h1>
-            <p className="mt-[15px] font-serif text-[15px] font-semibold text-fg">
+            <p className="mt-5 font-display text-[19px] font-bold leading-snug text-tomato-deep">
+              {t.hero.tagline}
+            </p>
+            <p className="mt-2 text-[15px] font-bold text-ink">
               {t.hero.badge} · {t.hero.location}
             </p>
-            <p className="mt-4 max-w-[520px] text-[15px] leading-[1.65] text-muted">
+            <p className="mt-4 max-w-[520px] text-[16px] leading-[1.7] text-muted">
               {t.hero.aboutDesc}
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[5px] bg-pine px-5 text-[13px] font-bold text-cream transition-shadow hover:shadow-[0_0_0_1px_#d6a84f]"
-              >
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a href="#projects" className="btn-lw btn-tomato">
                 {t.hero.projectBtn} <ArrowRight className="h-[17px] w-[17px]" />
               </a>
-              <a
-                href="#contact"
-                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[5px] border border-pine/40 bg-raise px-5 text-[13px] font-bold text-leaf transition-colors hover:border-gold"
-              >
+              <a href="#contact" className="btn-lw btn-paper">
                 {t.hero.contactBtn}
               </a>
             </div>
-            <div className="mt-6 flex items-center gap-4 text-muted">
-              <a href="https://github.com/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-gold">
+            <div className="mt-7 flex items-center gap-3">
+              <a href="https://github.com/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="grid h-11 w-11 place-items-center rounded-[10px] border-[3px] border-ink bg-art text-ink shadow-lw-sm transition-transform hover:-translate-y-0.5 hover:text-tomato">
                 <GithubIcon className="h-5 w-5" />
               </a>
-              <a href="https://linkedin.com/in/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-gold">
+              <a href="https://linkedin.com/in/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="grid h-11 w-11 place-items-center rounded-[10px] border-[3px] border-ink bg-art text-ink shadow-lw-sm transition-transform hover:-translate-y-0.5 hover:text-cobalt">
                 <LinkedinIcon className="h-5 w-5" />
               </a>
-              <a href="mailto:dwimahdini12@gmail.com" aria-label="Email" className="transition-colors hover:text-gold">
+              <a href="mailto:dwimahdini12@gmail.com" aria-label="Email" className="grid h-11 w-11 place-items-center rounded-[10px] border-[3px] border-ink bg-art text-ink shadow-lw-sm transition-transform hover:-translate-y-0.5 hover:text-tomato">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
@@ -97,31 +92,63 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative flex min-h-[250px] items-end justify-center"
+            className="relative mx-auto w-full max-w-[420px]"
           >
-            <div className="relative h-60 w-60 overflow-hidden rounded-lg border-[7px] border-[#141816] bg-[#171d18] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1),0_2px_8px_rgba(0,0,0,0.45)] sm:h-72 sm:w-72">
-              <Image src="/pas-foto.jpg" alt="Dwi Mahdini — foto formal" fill className="object-cover object-top" priority />
+            {/* Hiasan khas Linework: matahari dan bintang kobalt. */}
+            <span className="absolute -top-5 -right-2 z-[3] h-14 w-14 rounded-full border-[3px] border-ink bg-sun shadow-lw-sm" aria-hidden="true" />
+            <svg className="absolute -left-4 top-8 z-[3] h-9 w-9 text-cobalt" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z" />
+            </svg>
+            <div className="lw-card relative overflow-hidden p-4 sm:p-5">
+              <div className="flex items-center justify-between gap-2 pb-3">
+                <span className="chip chip-paper">{sketch ? "Sketsa pensil biru" : "Final"}</span>
+                <button
+                  onClick={() => setSketch((v) => !v)}
+                  className="inline-flex items-center gap-1.5 rounded-full border-2 border-ink bg-paper px-3 py-1.5 text-[11px] font-bold text-ink transition-colors hover:bg-sun"
+                  aria-pressed={sketch}
+                >
+                  <Pencil className="h-3.5 w-3.5" />
+                  {sketch ? "Lihat final" : "Lihat sketsa"}
+                </button>
+              </div>
+              <div className="relative mx-auto aspect-square w-full max-w-[288px] overflow-hidden rounded-[10px] border-[3px] border-ink bg-paper-2">
+                <Image
+                  src="/pas-foto.jpg"
+                  alt="Dwi Mahdini — foto formal"
+                  fill
+                  className={
+                    sketch
+                      ? "object-cover object-top grayscale sepia hue-rotate-[190deg] saturate-[2.4] contrast-[1.05] brightness-[1.12]"
+                      : "object-cover object-top"
+                  }
+                  priority
+                />
+              </div>
+              <p className="pt-3 text-center text-[11px] font-bold uppercase tracking-[1.6px] text-muted">
+                Dwi Mahdini — DM·01
+              </p>
             </div>
-            <span className="absolute bottom-[26px] right-6 hidden text-[9px] tracking-[1.5px] text-muted lg:block" aria-hidden="true">
-              DM—01
-            </span>
           </motion.div>
         </div>
       </section>
 
-      {/* Strip profil di bawah hero — seperti situs referensi. */}
-      <div className="bg-page px-6">
-        <div className="mx-auto mt-8 w-[min(1160px,100%-48px)] rounded-[4px] border border-line bg-raise p-5 shadow-none sm:p-6">
+      {/* Strip profil di bawah hero — panel kertas lebih dalam, outline tebal. */}
+      <div className="bg-paper px-5">
+        <div className="mx-auto w-full max-w-[1240px] rounded-[18px] border-[3px] border-ink bg-paper-2 p-5 shadow-lw sm:p-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {strip.map((item) => (
+            {strip.map((item, i) => (
               <div key={item.label} className="flex items-start gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-soft text-leaf">
-                  <item.icon className="h-[18px] w-[18px]" />
+                <span
+                  className={`grid h-11 w-11 shrink-0 place-items-center rounded-[10px] border-[3px] border-ink text-ink shadow-lw-sm ${
+                    i === 0 ? "bg-tomato text-art" : i === 1 ? "bg-cobalt text-art" : "bg-sun"
+                  }`}
+                >
+                  <item.icon className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-[1.4px] text-gold">{item.label}</p>
-                  <p className="mt-1 text-[15px] font-bold text-fg">{item.value}</p>
-                  <p className="mt-0.5 text-[12px] text-muted">{item.sub}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[1.6px] text-tomato-deep">{item.label}</p>
+                  <p className="mt-1 text-[16px] font-bold text-ink">{item.value}</p>
+                  <p className="mt-0.5 text-[13px] text-muted">{item.sub}</p>
                 </div>
               </div>
             ))}

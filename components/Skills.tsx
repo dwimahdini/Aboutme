@@ -6,6 +6,7 @@ import { skills } from "@/data/skills";
 import { useLanguage } from "./Providers";
 
 const groupIcons = [Code2, Database, BrainCircuit, Users];
+const groupFills = ["bg-tomato text-art", "bg-cobalt text-art", "bg-sun text-ink", "bg-tomato text-art"];
 
 export default function Skills() {
   const { t } = useLanguage();
@@ -22,15 +23,15 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="bg-page px-6 py-[30px]">
-      <div className="mx-auto w-full max-w-[1160px] border-t border-line pt-8">
-        <span className="block text-[10px] font-bold uppercase tracking-[1.5px] text-coral">{t.nav.skills}</span>
-        <h2 className="mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-leaf">
-          {t.skills.title}
+    <section id="skills" className="bg-paper px-5 py-[64px]">
+      <div className="mx-auto w-full max-w-[1240px] border-t-[3px] border-ink pt-12">
+        <span className="block text-[11px] font-bold uppercase tracking-[2px] text-tomato-deep">{t.nav.skills}</span>
+        <h2 className="mt-3 font-display text-[clamp(34px,5vw,56px)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
+          <span className="scribble">{t.skills.title}</span>
         </h2>
-        <p className="mt-3 max-w-[680px] text-[14px] leading-[1.7] text-muted">{t.skills.subtitle}</p>
+        <p className="mt-4 max-w-[680px] text-[15px] leading-[1.7] text-muted">{t.skills.subtitle}</p>
 
-        <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {skills.map((skillGroup, index) => {
             const GroupIcon = groupIcons[index % groupIcons.length];
             return (
@@ -40,20 +41,22 @@ export default function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="lw-card lw-card-hover p-5"
               >
-                <span className="mb-3 grid h-[29px] w-[29px] place-items-center rounded-full bg-soft text-leaf">
-                  <GroupIcon className="h-[18px] w-[18px]" />
+                <span className={`mb-4 grid h-11 w-11 place-items-center rounded-[10px] border-[3px] border-ink shadow-lw-sm ${groupFills[index % groupFills.length]}`}>
+                  <GroupIcon className="h-5 w-5" />
                 </span>
-                <h3 className="mb-4 font-serif text-[15px] font-bold text-leaf">
+                <h3 className="mb-4 font-display text-[18px] font-extrabold text-ink">
                   {getCategoryName(skillGroup.category)}
                 </h3>
                 <div className="flex flex-col gap-2.5">
                   {skillGroup.skills.map((skill) => (
-                    <div key={skill.name} className="flex items-center gap-2.5 text-[13px] font-medium text-fg transition-colors hover:text-leaf">
+                    <div key={skill.name} className="flex items-center gap-2.5 text-[14px] font-bold text-ink">
+                      <span className="h-2 w-2 shrink-0 rounded-full bg-tomato ring-2 ring-ink/10" aria-hidden="true" />
                       {skill.img ? (
                         <img src={skill.img} alt="" className="h-5 w-5 shrink-0 object-contain" />
                       ) : skill.icon ? (
-                        <skill.icon className="h-[18px] w-[18px] shrink-0 text-leaf" />
+                        <skill.icon className="h-[18px] w-[18px] shrink-0 text-cobalt" />
                       ) : null}
                       <span>{skill.name}</span>
                     </div>

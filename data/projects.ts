@@ -7,6 +7,8 @@ export interface Project {
   /** Status jujur ala template developer-portfolio: hanya "published" kalau ada bukti publik. */
   status: "published" | "completed" | "exercise";
   featured?: boolean;
+  /** Kategori untuk filter gaya Linework. */
+  category: "AI & RAG" | "Web App" | "AI / ML" | "Data";
 }
 
 // URUTAN HARUS SAMA dengan dictionaries.*.projects.items
@@ -19,6 +21,7 @@ export const projects: Project[] = [
     projectUrl: "https://ejournal.ummuba.ac.id/index.php/JUPTIK/en/article/view/4373",
     status: "published",
     featured: true,
+    category: "AI & RAG",
   },
   {
     title: "Sistem Pembacaan Al-Qur'an & Hadis",
@@ -26,6 +29,7 @@ export const projects: Project[] = [
       "Aplikasi web full-stack untuk pembacaan Al-Qur'an dan Hadis dengan antarmuka interaktif dan responsif.",
     techStack: ["Next.js", "Laravel", "MySQL", "Tailwind CSS"],
     status: "completed",
+    category: "Web App",
   },
   {
     title: "Website Penjualan + Kasir (POS) — Es Coklat Roti Kukus Bang Bewok",
@@ -33,6 +37,7 @@ export const projects: Project[] = [
       "Website penjualan interaktif untuk UMKM beserta sistem kasir (POS) terintegrasi, database transaksi dan inventaris.",
     techStack: ["Laravel", "MySQL", "JavaScript", "POS"],
     status: "completed",
+    category: "Web App",
   },
   {
     title: "Klasifikasi Kualitas Biji Kopi",
@@ -40,6 +45,7 @@ export const projects: Project[] = [
       "Aplikasi machine learning untuk mengklasifikasikan kualitas biji kopi melalui analisis gambar.",
     techStack: ["Python", "Machine Learning", "Scikit-Learn"],
     status: "completed",
+    category: "AI / ML",
   },
   {
     title: "Sistem Pengenalan Warna untuk Penyandang Buta Warna",
@@ -47,6 +53,7 @@ export const projects: Project[] = [
       "Aplikasi computer vision yang membantu penyandang buta warna mengenali warna benda di sekitarnya.",
     techStack: ["Python", "OpenCV", "Computer Vision"],
     status: "completed",
+    category: "AI / ML",
   },
   {
     title: "K-Means: Kualitas Udara Pekanbaru",
@@ -54,5 +61,6 @@ export const projects: Project[] = [
       "Latihan data mining: clustering kualitas udara Pekanbaru dengan K-Means, K=3. Bukan skripsi — ilustrasi alur algoritma pada 20 data, 1–20 Jan 2024.",
     techStack: ["Python", "K-Means", "Excel", "Data Mining"],
     status: "exercise",
+    category: "Data",
   },
 ];

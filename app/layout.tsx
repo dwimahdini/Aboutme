@@ -1,11 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import LenisProvider from "@/components/LenisProvider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+// Font mengikuti sistem Linework: Bricolage Grotesque (display) + DM Sans (body).
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+  weight: ["400", "500", "600", "700", "800"],
+});
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Dwi Mahdini, S.T. — Web Developer & AI Engineering",
@@ -26,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} bg-page font-sans text-fg antialiased`}>
+      <body className={`${bricolage.variable} ${dmSans.variable} bg-paper font-sans text-ink antialiased`}>
         <LenisProvider>
           <Providers>
             <main>{children}</main>
