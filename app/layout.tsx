@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/Providers";
+import LenisProvider from "@/components/LenisProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
   title: "Dwi Mahdini, S.T. — Web Developer & AI Engineering",
@@ -16,25 +19,17 @@ export const metadata: Metadata = {
   },
 };
 
-import { Providers } from "@/components/Providers";
-
-import LenisProvider from "@/components/LenisProvider";
-import MatrixBackground from "@/components/MatrixBackground";
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning>
-      <body className={`${inter.className} bg-gray-50 dark:bg-[#050505] text-gray-900 dark:text-gray-200 antialiased selection:bg-cyan-500/30 selection:text-cyan-200 transition-colors duration-300`}>
+    <html lang="id">
+      <body className={`${dmSans.variable} ${playfair.variable} bg-cream font-sans text-ink antialiased`}>
         <LenisProvider>
           <Providers>
-            <MatrixBackground />
-            <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24 space-y-8 relative">
-              {children}
-            </main>
+            <main>{children}</main>
           </Providers>
         </LenisProvider>
       </body>

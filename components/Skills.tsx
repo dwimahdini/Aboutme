@@ -1,19 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Code2, Database, BrainCircuit, Users } from "lucide-react";
 import { skills } from "@/data/skills";
 import { useLanguage } from "./Providers";
 
-const glowColors = [
-  "text-cyan-600 dark:text-cyan-400 border-cyan-500/20 dark:border-cyan-400/30 bg-cyan-500/5 dark:bg-cyan-400/5 hover:bg-cyan-500/10 dark:hover:bg-cyan-400/10",
-  "text-emerald-600 dark:text-emerald-400 border-emerald-500/20 dark:border-emerald-400/30 bg-emerald-500/5 dark:bg-emerald-400/5 hover:bg-emerald-500/10 dark:hover:bg-emerald-400/10",
-  "text-purple-600 dark:text-purple-400 border-purple-500/20 dark:border-purple-400/30 bg-purple-500/5 dark:bg-purple-400/5 hover:bg-purple-500/10 dark:hover:bg-purple-400/10",
-  "text-orange-600 dark:text-orange-400 border-orange-500/20 dark:border-orange-400/30 bg-orange-500/5 dark:bg-orange-400/5 hover:bg-orange-500/10 dark:hover:bg-orange-400/10"
-];
+const groupIcons = [Code2, Database, BrainCircuit, Users];
 
 export default function Skills() {
   const { t } = useLanguage();
-  
+
   // Helper to map English/Indonesian fallback for category
   const getCategoryName = (originalCat: string) => {
     switch (originalCat) {
@@ -26,42 +22,47 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 transition-colors">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">{t.skills.title}</h2>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">{t.skills.subtitle}</p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {skills.map((skillGroup, index) => (
-          <motion.div
-            key={skillGroup.category}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-          >
-            <h3 className="text-sm font-bold text-gray-500 tracking-widest uppercase mb-4 transition-colors">
-              {getCategoryName(skillGroup.category)}
-            </h3>
-            <div className="flex flex-col gap-3">
-              {skillGroup.skills.map((skill) => (
-                <div 
-                  key={skill.name} 
-                  className={`px-4 py-3 rounded-xl border flex items-center gap-3 transition-all ${glowColors[index % glowColors.length]}`}
-                >
-                  {skill.img ? (
-                    <img 
-                      src={skill.img} 
-                      alt={skill.name} 
-                      className={`w-6 h-6 object-contain shrink-0 ${skill.name === 'Next.js' ? 'dark:bg-white bg-transparent rounded-full p-0.5' : ''}`}
-                    />
-                  ) : skill.icon ? (
-                    <skill.icon className="w-5 h-5 shrink-0" />
-                  ) : null}
-                  <span className="text-sm font-medium text-gray-800 dark:text-white/90 transition-colors">{skill.name}</span>
+    <section id="skills" className="bg-cream px-6 py-[30px]">
+      <div className="mx-auto w-full max-w-[1160px] border-t border-line pt-8">
+        <span className="block text-[10px] font-bold uppercase tracking-[1.5px] text-coral">{t.nav.skills}</span>
+        <h2 className="mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+          {t.skills.title}
+        </h2>
+        <p className="mt-3 max-w-[680px] text-[14px] leading-[1.7] text-muted">{t.skills.subtitle}</p>
+
+        <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+          {skills.map((skillGroup, index) => {
+            const GroupIcon = groupIcons[index % groupIcons.length];
+            return (
+              <motion.div
+                key={skillGroup.category}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <span className="mb-3 grid h-[29px] w-[29px] place-items-center rounded-full bg-soft text-pine">
+                  <GroupIcon className="h-[18px] w-[18px]" />
+                </span>
+                <h3 className="mb-4 font-serif text-[15px] font-bold text-pine">
+                  {getCategoryName(skillGroup.category)}
+                </h3>
+                <div className="flex flex-col gap-2.5">
+                  {skillGroup.skills.map((skill) => (
+                    <div key={skill.name} className="flex items-center gap-2.5 text-[13px] font-medium text-ink transition-colors hover:text-pine">
+                      {skill.img ? (
+                        <img src={skill.img} alt="" className="h-5 w-5 shrink-0 object-contain" />
+                      ) : skill.icon ? (
+                        <skill.icon className="h-[18px] w-[18px] shrink-0 text-pine" />
+                      ) : null}
+                      <span>{skill.name}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

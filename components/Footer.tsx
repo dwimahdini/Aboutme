@@ -5,10 +5,11 @@ import { useLanguage } from "./Providers";
 export default function Footer() {
   const { t } = useLanguage();
   return (
-    <footer className="text-center pb-4">
-      <p className="text-xs text-gray-500 dark:text-gray-500 leading-relaxed max-w-xl mx-auto">
-        © {new Date().getFullYear()} Dwi Mahdini — Pekanbaru, Riau. {t.footer.note}
-      </p>
+    <footer className="bg-cream px-8 pb-[18px] pt-6">
+      <div className="mx-auto flex w-full max-w-[1160px] flex-col justify-between gap-2 text-[11px] leading-relaxed text-muted sm:flex-row">
+        <span>© {new Date().getFullYear()} Dwi Mahdini — Pekanbaru, Riau.</span>
+        <span>{t.footer.note}</span>
+      </div>
     </footer>
   );
 }

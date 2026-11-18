@@ -1,22 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Briefcase, Users, GraduationCap, Award } from "lucide-react";
 import { experience, education } from "@/data/experience";
 import { certifications } from "@/data/certifications";
 import { useLanguage } from "./Providers";
 
-function TimelineList({ items, dictItems }: { items: typeof experience; dictItems: any[] }) {
+function TimelineList({ items, dictItems, icon: Icon }: { items: typeof experience; dictItems: any[]; icon: any }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10">
+    <div className="space-y-4">
       {items.map((item) => {
         const originalIndex = experience.indexOf(item);
         const d = dictItems[originalIndex];
         return (
-          <div key={item.title} className="relative pl-6 border-l border-gray-300 dark:border-white/10 transition-colors">
-            <div className="absolute w-3 h-3 bg-cyan-500 dark:bg-cyan-400 rounded-full -left-[1.5px] top-1.5 shadow-[0_0_10px_rgba(6,182,212,0.5)] dark:shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
-            <h4 className="text-lg font-bold text-gray-800 dark:text-gray-200 transition-colors">{d?.title || item.title}</h4>
-            <p className="text-sm font-medium text-cyan-600 dark:text-cyan-400 mb-2 transition-colors">{d?.organization || item.organization} • {d?.period || item.period}</p>
-            {item.description && <p className="text-sm text-gray-600 dark:text-gray-500 leading-relaxed transition-colors">{d?.description || item.description}</p>}
+          <div key={item.title} className="flex max-w-[680px] gap-4 rounded-[5px] border border-line bg-cream p-4">
+            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-pine text-cream">
+              <Icon className="h-[18px] w-[18px]" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold tracking-wide text-gold">{d?.period || item.period}</p>
+              <h3 className="mt-1 font-serif text-[17px] font-bold leading-snug text-pine">{d?.title || item.title}</h3>
+              <p className="mt-0.5 text-[12px] font-semibold text-pine/80">{d?.organization || item.organization}</p>
+              {item.description && (
+                <p className="mt-2 text-[13px] leading-[1.5] text-muted">{d?.description || item.description}</p>
+              )}
+            </div>
           </div>
         );
       })}
@@ -30,112 +38,124 @@ export default function Experience() {
   const org = experience.filter((e) => e.type === "Organization");
 
   return (
-    <section id="experience" className="flex flex-col gap-8">
-      {/* Work */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 w-full transition-colors"
-      >
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 transition-colors">{t.experience.title}</h2>
-        <TimelineList items={work} dictItems={t.experience.items} />
-      </motion.div>
-
-      {/* Organization */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 w-full transition-colors"
-      >
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 transition-colors">{t.experience.orgTitle}</h2>
-        <TimelineList items={org} dictItems={t.experience.items} />
-      </motion.div>
-
-      {/* Education & Certs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section id="experience" className="bg-cream px-6 py-[30px]">
+      <div className="mx-auto flex w-full max-w-[1160px] flex-col gap-10">
+        {/* Work */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 transition-colors"
+          transition={{ duration: 0.5 }}
+          className="border-t border-line pt-8"
         >
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 transition-colors">{t.experience.education}</h2>
-          <div className="space-y-6">
-            {education.map((edu: any, index) => (
-              <div key={index} className="flex flex-col items-start p-5 rounded-2xl border border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-white/[0.02] hover:bg-gray-100 dark:hover:bg-white/[0.04] transition-colors w-full relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-1 h-full bg-cyan-400 dark:bg-cyan-500/50 group-hover:bg-cyan-500 dark:group-hover:bg-cyan-400 transition-colors"></div>
-                <div className="flex flex-wrap items-center gap-3 mb-2">
-                  <h4 className="text-lg font-bold text-gray-800 dark:text-gray-200 transition-colors">{t.experience.eduItems[index]?.degree || edu.degree}</h4>
-                  {edu.major && (
-                    <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-cyan-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-200 dark:border-cyan-500/20 uppercase tracking-wider transition-colors">
-                      {t.experience.eduItems[index]?.major || edu.major}
-                    </span>
-                  )}
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-4 transition-colors">{t.experience.eduItems[index]?.institution || edu.institution}</p>
-                <div className="flex items-center justify-between w-full mt-auto">
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500 transition-colors">
-                    {edu.period}
+          <span className="block text-[10px] font-bold uppercase tracking-[1.5px] text-coral">{t.nav.experience}</span>
+          <h2 className="mb-6 mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+            {t.experience.title}
+          </h2>
+          <TimelineList items={work} dictItems={t.experience.items} icon={Briefcase} />
+        </motion.div>
+
+        {/* Organization */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="border-t border-line pt-8"
+        >
+          <h2 className="mb-6 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+            {t.experience.orgTitle}
+          </h2>
+          <TimelineList items={org} dictItems={t.experience.items} icon={Users} />
+        </motion.div>
+
+        {/* Education & Certs */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border-t border-line pt-8"
+          >
+            <h2 className="mb-6 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+              {t.experience.education}
+            </h2>
+            <div className="space-y-4">
+              {education.map((edu: any, index) => (
+                <div key={index} className="flex max-w-[680px] gap-4 rounded-[5px] border border-line bg-cream p-4">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-pine text-cream">
+                    <GraduationCap className="h-[18px] w-[18px]" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold tracking-wide text-gold">{edu.period}</p>
+                    <h3 className="mt-1 font-serif text-[17px] font-bold leading-snug text-pine">
+                      {t.experience.eduItems[index]?.degree || edu.degree}
+                    </h3>
+                    {edu.major && (
+                      <span className="mt-1 inline-block rounded-[9px] bg-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-ink">
+                        {t.experience.eduItems[index]?.major || edu.major}
+                      </span>
+                    )}
+                    <p className="mt-1.5 text-[13px] leading-[1.5] text-muted">
+                      {t.experience.eduItems[index]?.institution || edu.institution}
+                    </p>
+                    {edu.link && (
+                      <a href={edu.link} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-[12px] font-bold text-pine hover:text-gold">
+                        {t.experience.viewWebsite} →
+                      </a>
+                    )}
                   </div>
-                  {edu.link && (
-                    <a href={edu.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-white/5 hover:bg-cyan-100 dark:hover:bg-cyan-500/10 text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-cyan-400 text-xs font-bold transition-colors">
-                      {t.experience.viewWebsite}
-                    </a>
-                  )}
                 </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 transition-colors"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 transition-colors">{t.experience.certification}</h2>
-          <div className="space-y-4">
-            {certifications.map((cert: any, index) => (
-              <div key={index} className="flex flex-col items-start p-5 rounded-2xl border border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-white/[0.02] hover:bg-gray-100 dark:hover:bg-white/[0.04] transition-colors w-full relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-1 h-full bg-orange-400 dark:bg-orange-500/50 group-hover:bg-orange-500 dark:group-hover:bg-orange-400 transition-colors"></div>
-                <div className="flex items-center gap-3 mb-2">
-                  {cert.icon && (
-                    <div className="p-2 bg-orange-100 dark:bg-orange-500/10 rounded-lg text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-500/20 transition-colors">
-                      <cert.icon className="w-5 h-5" />
-                    </div>
-                  )}
-                  <h4 className="text-lg font-bold text-gray-800 dark:text-gray-200 transition-colors">{t.experience.certItems[index]?.title || cert.title}</h4>
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-1 transition-colors">{t.experience.issuer}: {t.experience.certItems[index]?.issuer || cert.issuer}</p>
-                {cert.date && <p className="text-xs text-gray-500 dark:text-gray-500 mb-3">{cert.date}</p>}
-                {cert.image && (
-                  <a href={cert.image} target="_blank" rel="noopener noreferrer" className="block mb-3 overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 group/img">
-                    <img src={cert.image} alt={cert.title} className="w-full h-auto transition-transform duration-300 group-hover/img:scale-[1.02]" loading="lazy" />
-                  </a>
-                )}
-                <div className="flex flex-wrap gap-2">
-                  {cert.url && (
-                    <a href={cert.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-white/5 hover:bg-orange-100 dark:hover:bg-orange-500/10 text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 text-xs font-bold transition-colors">
-                      {t.experience.viewCert}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border-t border-line pt-8"
+          >
+            <h2 className="mb-6 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+              {t.experience.certification}
+            </h2>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {certifications.map((cert: any, index) => (
+                <div key={index} className="rounded-[4px] border border-line bg-cream p-[13px_11px]">
+                  <span className="mb-2 grid h-[25px] w-[25px] place-items-center rounded-full bg-pine text-gold">
+                    <Award className="h-[15px] w-[15px]" />
+                  </span>
+                  <strong className="block font-serif text-[14px] font-bold leading-snug text-pine">
+                    {t.experience.certItems[index]?.title || cert.title}
+                  </strong>
+                  <p className="mt-1 min-h-[28px] text-[12px] leading-[1.35] text-muted">
+                    {t.experience.certItems[index]?.issuer || cert.issuer}
+                    {cert.date ? ` · ${cert.date}` : ""}
+                  </p>
+                  {cert.image && (
+                    <a href={cert.image} target="_blank" rel="noopener noreferrer" className="mt-2 block overflow-hidden rounded-[4px] border border-line bg-white">
+                      <img src={cert.image} alt={cert.title} className="h-auto w-full object-contain" loading="lazy" />
                     </a>
                   )}
-                  {cert.file && (
-                    <a href={cert.file} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-orange-500 text-white hover:bg-orange-600 text-xs font-bold transition-colors">
-                      Lihat File PDF
-                    </a>
-                  )}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {cert.url && (
+                      <a href={cert.url} target="_blank" rel="noopener noreferrer" className="text-[12px] font-bold text-pine hover:text-gold">
+                        {t.experience.viewCert} →
+                      </a>
+                    )}
+                    {cert.file && (
+                      <a href={cert.file} target="_blank" rel="noopener noreferrer" className="rounded-[5px] bg-pine px-2.5 py-1.5 text-[11px] font-bold text-cream transition-colors hover:bg-pine/85">
+                        Lihat File PDF
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

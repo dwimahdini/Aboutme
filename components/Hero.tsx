@@ -1,119 +1,132 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Download } from "lucide-react";
+import { ArrowRight, Mail, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { useLanguage } from "./Providers";
 
-const ROLES_ID = ["Web Developer", "AI Engineer", "Full-Stack Developer", "Data Enthusiast"];
-const ROLES_EN = ["Web Developer", "AI Engineer", "Full-Stack Developer", "Data Enthusiast"];
+// Ikon brand tidak lagi tersedia di lucide-react — didefinisikan sendiri.
+const GithubIcon = (props: any) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+  </svg>
+);
 
-// Efek mengetik (typewriter) untuk peran — berputar tiap beberapa detik.
-function useTypewriter(words: string[]) {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [deleting, setDeleting] = useState(false);
+const LinkedinIcon = (props: any) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+  </svg>
+);
 
-  useEffect(() => {
-    const word = words[wordIndex % words.length];
-    const speed = deleting ? 45 : 90;
-    const timer = setTimeout(() => {
-      if (!deleting && text === word) {
-        setTimeout(() => setDeleting(true), 1600);
-      } else if (deleting && text === "") {
-        setDeleting(false);
-        setWordIndex((i) => (i + 1) % words.length);
-      } else {
-        setText(word.slice(0, text.length + (deleting ? -1 : 1)));
-      }
-    }, speed);
-    return () => clearTimeout(timer);
-  }, [text, deleting, wordIndex, words]);
-
-  return text;
-}
-
+// Hero gelap mengikuti situs referensi: grid halus, status ber-titik emas,
+// tagline sebagai eyebrow, nama besar DM Sans, foto 1:1 dalam bingkai gelap.
 export default function Hero() {
   const { t, language } = useLanguage();
-  const typed = useTypewriter(language === "id" ? ROLES_ID : ROLES_EN);
+
+  const strip =
+    language === "id"
+      ? [
+          { label: "Lokasi", value: "Pekanbaru, Riau", sub: "Indonesia — WIB (UTC+7)", icon: MapPin },
+          { label: "Pendidikan", value: "S1 Teknik Informatika", sub: "UIN Suska Riau · 2022 — 2026", icon: GraduationCap },
+          { label: "Status", value: "Fresh Graduate", sub: "Terbuka untuk kerja & freelance", icon: Briefcase },
+        ]
+      : [
+          { label: "Location", value: "Pekanbaru, Riau", sub: "Indonesia — WIB (UTC+7)", icon: MapPin },
+          { label: "Education", value: "BSc Informatics Engineering", sub: "UIN Suska Riau · 2022 — 2026", icon: GraduationCap },
+          { label: "Status", value: "Fresh Graduate", sub: "Open to work & freelance", icon: Briefcase },
+        ];
 
   return (
-    <section id="about" className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Profile Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden transition-colors"
-      >
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/5 dark:from-cyan-500/10 to-transparent pointer-events-none transition-colors"></div>
+    <>
+      <section id="about" className="relative overflow-hidden bg-night text-cream">
+        <div className="hero-grid-overlay absolute inset-0" aria-hidden="true" />
+        <div className="relative z-[2] mx-auto grid w-full max-w-[1160px] grid-cols-1 items-center gap-12 px-6 pb-[clamp(52px,7vh,82px)] pt-[calc(76px+clamp(40px,7vh,82px))] lg:min-h-[640px] lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-[clamp(32px,6vw,100px)]">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-[740px]"
+          >
+            <p className="mb-[22px] inline-flex items-center gap-2.5 rounded-[4px] border border-white/15 px-3 py-2 text-[9px] font-semibold uppercase tracking-[1.4px] text-[#cbcec8]">
+              <span className="h-2 w-2 rounded-full bg-gold shadow-[0_0_13px_rgba(214,168,79,0.6)]" />
+              {t.hero.role}
+            </p>
+            <span className="mb-[14px] block text-[10px] font-bold uppercase tracking-[1.8px] text-gold">
+              {t.hero.tagline}
+            </span>
+            <h1 className="text-[clamp(54px,7.2vw,96px)] font-bold leading-[0.92] tracking-[-0.075em] text-[#f6f5f1]">
+              Dwi Mahdini
+            </h1>
+            <p className="mt-[15px] font-serif text-[15px] font-semibold text-[#d1d2cc]">
+              {t.hero.badge} · {t.hero.location}
+            </p>
+            <p className="mt-4 max-w-[520px] text-[15px] leading-[1.65] text-[#a9ada6]">
+              {t.hero.aboutDesc}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#projects"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[5px] bg-pine px-5 text-[13px] font-bold text-cream transition-shadow hover:shadow-[0_0_0_1px_#d6a84f]"
+              >
+                {t.hero.projectBtn} <ArrowRight className="h-[17px] w-[17px]" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[5px] border border-pine/40 bg-cream px-5 text-[13px] font-bold text-pine transition-colors hover:border-gold"
+              >
+                {t.hero.contactBtn}
+              </a>
+            </div>
+            <div className="mt-6 flex items-center gap-4 text-[#d1d2cc]">
+              <a href="https://github.com/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-gold">
+                <GithubIcon className="h-5 w-5" />
+              </a>
+              <a href="https://linkedin.com/in/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="transition-colors hover:text-gold">
+                <LinkedinIcon className="h-5 w-5" />
+              </a>
+              <a href="mailto:dwimahdini12@gmail.com" aria-label="Email" className="transition-colors hover:text-gold">
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+          </motion.div>
 
-        <div>
-          <div className="flex flex-col items-center gap-6 mb-6 text-center">
-            <div className="w-60 h-60 sm:w-72 sm:h-72 aspect-square rounded-[2rem] bg-gray-100 dark:bg-black border-2 border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.2)] dark:shadow-[0_0_20px_rgba(34,211,238,0.4)] flex items-center justify-center shrink-0 overflow-hidden relative transition-colors">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative flex min-h-[250px] items-end justify-center"
+          >
+            <div className="relative h-60 w-60 overflow-hidden rounded-lg border-[7px] border-[#141816] bg-[#171d18] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1),0_2px_8px_rgba(0,0,0,0.45)] sm:h-72 sm:w-72">
               <Image src="/pas-foto.jpg" alt="Dwi Mahdini — foto formal" fill className="object-cover object-top" priority />
             </div>
-            <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-medium tracking-widest uppercase mb-1 transition-colors">{t.hero.greeting}</p>
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white tracking-tight transition-colors">Dwi Mahdini, S.T.</h1>
-              <p className="mt-3 text-base font-semibold text-cyan-600 dark:text-cyan-400">{t.hero.role}</p>
-              <p className="mt-3 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white leading-tight">{t.hero.tagline}</p>
-              <p className="mt-2 text-base font-semibold text-emerald-600 dark:text-emerald-400 h-6">
-                {typed}
-                <span className="animate-pulse">|</span>
-              </p>
-              <span className="mt-4 inline-block px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/30">{t.hero.badge}</span>
-              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-1.5">
-                <MapPin className="w-4 h-4 shrink-0" /> {t.hero.location}
-              </p>
-            </div>
+            <span className="absolute bottom-[26px] right-6 hidden text-[9px] tracking-[1.5px] text-[#777b74] lg:block" aria-hidden="true">
+              DM—01
+            </span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Strip profil di bawah hero — seperti situs referensi. */}
+      <div className="bg-cream px-6">
+        <div className="mx-auto mt-8 w-[min(1160px,100%-48px)] rounded-[4px] border border-line bg-[#fbf8f1] p-5 shadow-none sm:p-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {strip.map((item) => (
+              <div key={item.label} className="flex items-start gap-3">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-soft text-pine">
+                  <item.icon className="h-[18px] w-[18px]" />
+                </span>
+                <div>
+                  <p className="text-[9px] font-bold uppercase tracking-[1.4px] text-gold">{item.label}</p>
+                  <p className="mt-1 text-[15px] font-bold text-ink">{item.value}</p>
+                  <p className="mt-0.5 text-[12px] text-muted">{item.sub}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="flex flex-col sm:flex-row justify-center gap-3 mt-8">
-          <a
-            href="#contact"
-            className="px-6 py-3 rounded-xl border border-emerald-500/30 dark:border-emerald-500/50 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold hover:bg-emerald-100 dark:hover:bg-emerald-500/20 transition-all flex items-center justify-center gap-2"
-          >
-            {t.hero.contactBtn}
-          </a>
-          <a
-            href="#projects"
-            className="px-6 py-3 rounded-xl border border-indigo-500/30 dark:border-indigo-500/50 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold hover:bg-indigo-100 dark:hover:bg-indigo-500/20 transition-all flex items-center justify-center gap-2"
-          >
-            {t.hero.projectBtn}
-          </a>
-          <a
-            href="/CV-Dwi-Mahdini.pdf"
-            download
-            className="px-6 py-3 rounded-xl border border-gray-300 dark:border-white/20 bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-200 font-bold hover:bg-gray-200 dark:hover:bg-white/10 transition-all flex items-center justify-center gap-2"
-          >
-            <Download className="w-4 h-4" /> {t.hero.cvBtn}
-          </a>
-        </div>
-      </motion.div>
-
-      {/* Info Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 transition-colors"
-      >
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 transition-colors">{t.hero.aboutTitle}</h2>
-        <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6 text-justify transition-colors">
-          {t.hero.aboutDesc}
-        </p>
-        <ul className="space-y-4">
-          {[t.hero.point1, t.hero.point2, t.hero.point3].map((point) => (
-            <li key={point} className="flex items-start gap-3">
-              <svg className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-              <span className="text-sm text-gray-700 dark:text-gray-300 transition-colors">{point}</span>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
-    </section>
+      </div>
+    </>
   );
 }

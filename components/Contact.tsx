@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useLanguage } from "./Providers";
 
+// Ikon brand tidak lagi tersedia di lucide-react — didefinisikan sendiri.
 const InstagramIcon = (props: any) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -27,139 +28,75 @@ const LinkedinIcon = (props: any) => (
 );
 
 const FacebookIcon = (props: any) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
 
+// Pita CTA hijau tua + detail kontak — mengikuti situs referensi.
 export default function Contact() {
   const { t } = useLanguage();
 
   const contactLinks = [
-    {
-      name: "Email",
-      value: "dwimahdini12@gmail.com",
-      icon: Mail,
-      href: "mailto:dwimahdini12@gmail.com",
-      color: "text-emerald-600 dark:text-emerald-400",
-      bg: "bg-emerald-100 dark:bg-emerald-500/10",
-      border: "border-emerald-200 dark:border-emerald-500/20",
-      hover: "hover:border-emerald-300 dark:hover:border-emerald-500/50 hover:bg-emerald-200 dark:hover:bg-emerald-500/20"
-    },
-    {
-      name: "WhatsApp",
-      value: "0812-1566-0192",
-      icon: Phone,
-      href: "https://wa.me/6281215660192",
-      color: "text-green-600 dark:text-green-400",
-      bg: "bg-green-100 dark:bg-green-500/10",
-      border: "border-green-200 dark:border-green-500/20",
-      hover: "hover:border-green-300 dark:hover:border-green-500/50 hover:bg-green-200 dark:hover:bg-green-500/20"
-    },
-    {
-      name: t.contact.address,
-      value: "Pekanbaru, Riau",
-      icon: MapPin,
-      href: "https://maps.google.com/?q=Pekanbaru,Riau",
-      color: "text-red-600 dark:text-red-400",
-      bg: "bg-red-100 dark:bg-red-500/10",
-      border: "border-red-200 dark:border-red-500/20",
-      hover: "hover:border-red-300 dark:hover:border-red-500/50 hover:bg-red-200 dark:hover:bg-red-500/20"
-    },
-    {
-      name: "Instagram",
-      value: "@wikithey",
-      icon: InstagramIcon,
-      href: "https://instagram.com/wikithey",
-      color: "text-pink-600 dark:text-pink-400",
-      bg: "bg-pink-100 dark:bg-pink-500/10",
-      border: "border-pink-200 dark:border-pink-500/20",
-      hover: "hover:border-pink-300 dark:hover:border-pink-500/50 hover:bg-pink-200 dark:hover:bg-pink-500/20"
-    },
-    {
-      name: "Facebook",
-      value: "Dwi Mahdini",
-      icon: FacebookIcon,
-      href: "https://facebook.com/dwimahdini",
-      color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-100 dark:bg-blue-500/10",
-      border: "border-blue-200 dark:border-blue-500/20",
-      hover: "hover:border-blue-300 dark:hover:border-blue-500/50 hover:bg-blue-200 dark:hover:bg-blue-500/20"
-    },
-    {
-      name: "GitHub",
-      value: "dwimahdini",
-      icon: GithubIcon,
-      href: "https://github.com/dwimahdini",
-      color: "text-gray-700 dark:text-gray-200",
-      bg: "bg-gray-200 dark:bg-gray-500/10",
-      border: "border-gray-300 dark:border-gray-500/20",
-      hover: "hover:border-gray-400 dark:hover:border-gray-400/50 hover:bg-gray-300 dark:hover:bg-gray-500/20"
-    },
-    {
-      name: "LinkedIn",
-      value: "dwimahdini",
-      icon: LinkedinIcon,
-      href: "https://linkedin.com/in/dwimahdini",
-      color: "text-sky-600 dark:text-sky-400",
-      bg: "bg-sky-100 dark:bg-sky-500/10",
-      border: "border-sky-200 dark:border-sky-500/20",
-      hover: "hover:border-sky-300 dark:hover:border-sky-500/50 hover:bg-sky-200 dark:hover:bg-sky-500/20"
-    }
+    { name: "Email", value: "dwimahdini12@gmail.com", icon: Mail, href: "mailto:dwimahdini12@gmail.com" },
+    { name: "WhatsApp", value: "0812-1566-0192", icon: Phone, href: "https://wa.me/6281215660192" },
+    { name: t.contact.address, value: "Pekanbaru, Riau", icon: MapPin, href: "https://maps.google.com/?q=Pekanbaru,Riau" },
+    { name: "Instagram", value: "@wikithey", icon: InstagramIcon, href: "https://instagram.com/wikithey" },
+    { name: "Facebook", value: "Dwi Mahdini", icon: FacebookIcon, href: "https://facebook.com/dwimahdini" },
+    { name: "GitHub", value: "dwimahdini", icon: GithubIcon, href: "https://github.com/dwimahdini" },
+    { name: "LinkedIn", value: "dwimahdini", icon: LinkedinIcon, href: "https://linkedin.com/in/dwimahdini" },
   ];
 
   return (
-    <section className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 mb-8 transition-colors" id="contact">
-      <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">{t.cta.title}</p>
-      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">{t.cta.subtitle}</h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">{t.cta.desc}</p>
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-3 bg-indigo-100 dark:bg-indigo-500/10 rounded-xl transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-600 dark:text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white transition-colors">{t.contact.title}</h2>
-      </div>
-      
-      <p className="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed max-w-2xl transition-colors">
-        {t.contact.desc}
-      </p>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {contactLinks.map((contact, index) => (
-          <motion.div
-            key={contact.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
+    <section id="contact" className="bg-cream px-6 py-[30px]">
+      <div className="mx-auto w-full max-w-[1160px]">
+        <div className="flex flex-col justify-between gap-6 overflow-hidden rounded-[6px] bg-pine p-[26px] text-cream md:flex-row md:items-center">
+          <div>
+            <span className="block text-[10px] font-bold uppercase tracking-[1.5px] text-gold">
+              {t.nav.contact}
+            </span>
+            <h2 className="mt-2 font-serif text-[27px] font-semibold leading-tight">{t.cta.title}</h2>
+            <p className="mt-1 text-[13px] leading-[1.6] text-cream/80">
+              {t.cta.subtitle} {t.cta.desc}
+            </p>
+          </div>
+          <a
+            href="mailto:dwimahdini12@gmail.com"
+            className="inline-flex min-h-[44px] shrink-0 items-center justify-center rounded-[5px] bg-cream px-5 text-[13px] font-bold text-pine transition-colors hover:text-gold"
           >
-            <a
-              href={contact.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-center gap-4 p-5 rounded-2xl border bg-gray-50 dark:bg-white/[0.02] border-gray-200 dark:border-white/5 transition-all duration-300 group ${contact.hover}`}
+            {t.cta.button}
+          </a>
+        </div>
+
+        <h2 className="mb-2 mt-10 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+          {t.contact.title}
+        </h2>
+        <p className="mb-6 max-w-[680px] text-[14px] leading-[1.7] text-muted">{t.contact.desc}</p>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {contactLinks.map((contact, index) => (
+            <motion.div
+              key={contact.name}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: index * 0.06 }}
             >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-colors ${contact.bg} ${contact.color} ${contact.border}`}>
-                <contact.icon strokeWidth={2.5} className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 transition-colors">{contact.name}</p>
-                <p className="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{contact.value}</p>
-              </div>
-            </a>
-          </motion.div>
-        ))}
+              <a
+                href={contact.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-[4px] border border-line bg-cream p-3 transition-colors hover:border-gold/60"
+              >
+                <contact.icon className="h-5 w-5 shrink-0 text-pine" />
+                <span className="grid min-w-0 gap-1">
+                  <small className="text-[10px] font-semibold uppercase tracking-wide text-muted">{contact.name}</small>
+                  <strong className="truncate text-[13px] font-semibold text-ink">{contact.value}</strong>
+                </span>
+              </a>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

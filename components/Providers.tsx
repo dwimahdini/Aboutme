@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { dictionaries, Language } from "@/data/dictionary";
 
 type LanguageContextType = {
@@ -42,12 +41,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const t = dictionaries[language];
 
   return (
-    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
-      <LanguageContext.Provider value={{ language, setLanguage, t, mounted }}>
-        <div style={{ visibility: mounted ? 'visible' : 'hidden' }}>
-          {children}
-        </div>
-      </LanguageContext.Provider>
-    </NextThemesProvider>
+    <LanguageContext.Provider value={{ language, setLanguage, t, mounted }}>
+      <div style={{ visibility: mounted ? "visible" : "hidden" }}>{children}</div>
+    </LanguageContext.Provider>
   );
 }
