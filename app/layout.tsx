@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import LenisProvider from "@/components/LenisProvider";
 
-const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${playfair.variable} bg-page font-sans text-fg antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} bg-page font-sans text-fg antialiased`}>
         <LenisProvider>
           <Providers>
             <main>{children}</main>

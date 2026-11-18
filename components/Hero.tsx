@@ -20,8 +20,9 @@ const LinkedinIcon = (props: any) => (
   </svg>
 );
 
-// Hero gelap mengikuti situs referensi: grid halus, status ber-titik emas,
-// tagline sebagai eyebrow, nama besar DM Sans, foto 1:1 dalam bingkai gelap.
+// Hero mengikuti tema mengikuti situs referensi: grid halus, status ber-titik emas,
+// tagline sebagai eyebrow, nama besar Inter, foto 1:1 dalam bingkai gelap.
+// Di mode terang hero ikut terang (krem), di mode gelap hero ikut gelap.
 export default function Hero() {
   const { t, language } = useLanguage();
 
@@ -40,7 +41,7 @@ export default function Hero() {
 
   return (
     <>
-      <section id="about" className="relative overflow-hidden bg-night text-cream">
+      <section id="about" className="relative overflow-hidden bg-page text-fg">
         <div className="hero-grid-overlay absolute inset-0" aria-hidden="true" />
         <div className="relative z-[2] mx-auto grid w-full max-w-[1160px] grid-cols-1 items-center gap-12 px-6 pb-[clamp(52px,7vh,82px)] pt-[calc(76px+clamp(40px,7vh,82px))] lg:min-h-[640px] lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-[clamp(32px,6vw,100px)]">
           <motion.div
@@ -49,20 +50,20 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             className="max-w-[740px]"
           >
-            <p className="mb-[22px] inline-flex items-center gap-2.5 rounded-[4px] border border-white/15 px-3 py-2 text-[9px] font-semibold uppercase tracking-[1.4px] text-[#cbcec8]">
+            <p className="mb-[22px] inline-flex items-center gap-2.5 rounded-[4px] border border-line px-3 py-2 text-[9px] font-semibold uppercase tracking-[1.4px] text-muted">
               <span className="h-2 w-2 rounded-full bg-gold shadow-[0_0_13px_rgba(214,168,79,0.6)]" />
               {t.hero.role}
             </p>
             <span className="mb-[14px] block text-[10px] font-bold uppercase tracking-[1.8px] text-gold">
               {t.hero.tagline}
             </span>
-            <h1 className="text-[clamp(54px,7.2vw,96px)] font-bold leading-[0.92] tracking-[-0.075em] text-[#f6f5f1]">
+            <h1 className="text-[clamp(54px,7.2vw,96px)] font-bold leading-[0.92] tracking-[-0.075em] text-fg">
               Dwi Mahdini
             </h1>
-            <p className="mt-[15px] font-serif text-[15px] font-semibold text-[#d1d2cc]">
+            <p className="mt-[15px] font-serif text-[15px] font-semibold text-fg">
               {t.hero.badge} · {t.hero.location}
             </p>
-            <p className="mt-4 max-w-[520px] text-[15px] leading-[1.65] text-[#a9ada6]">
+            <p className="mt-4 max-w-[520px] text-[15px] leading-[1.65] text-muted">
               {t.hero.aboutDesc}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -74,12 +75,12 @@ export default function Hero() {
               </a>
               <a
                 href="#contact"
-                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[5px] border border-pine/40 bg-cream px-5 text-[13px] font-bold text-pine transition-colors hover:border-gold"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-[5px] border border-pine/40 bg-raise px-5 text-[13px] font-bold text-leaf transition-colors hover:border-gold"
               >
                 {t.hero.contactBtn}
               </a>
             </div>
-            <div className="mt-6 flex items-center gap-4 text-[#d1d2cc]">
+            <div className="mt-6 flex items-center gap-4 text-muted">
               <a href="https://github.com/dwimahdini" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="transition-colors hover:text-gold">
                 <GithubIcon className="h-5 w-5" />
               </a>
@@ -101,7 +102,7 @@ export default function Hero() {
             <div className="relative h-60 w-60 overflow-hidden rounded-lg border-[7px] border-[#141816] bg-[#171d18] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1),0_2px_8px_rgba(0,0,0,0.45)] sm:h-72 sm:w-72">
               <Image src="/pas-foto.jpg" alt="Dwi Mahdini — foto formal" fill className="object-cover object-top" priority />
             </div>
-            <span className="absolute bottom-[26px] right-6 hidden text-[9px] tracking-[1.5px] text-[#777b74] lg:block" aria-hidden="true">
+            <span className="absolute bottom-[26px] right-6 hidden text-[9px] tracking-[1.5px] text-muted lg:block" aria-hidden="true">
               DM—01
             </span>
           </motion.div>

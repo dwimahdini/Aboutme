@@ -5,10 +5,11 @@
 
 /* Design system mengikuti situs referensi:
    Terang: krem #f7f3ea, hijau tua #004d46, tinta #092f2d,
-   emas #d6a84f, koral #c96a55, malam #080a09.
+   emas #d6a84f, koral #c96a55, malam #080a09 — tanpa area gelap
+   di mode terang (hero, topbar, dan kartu ikut terang).
    Gelap: permukaan malam #080a09, teks krem, hijau terang #57b8a6
    untuk teks hijau, garis dan tint hijau yang disesuaikan.
-   Font: DM Sans (tampilan) + Playfair Display (judul serif). */
+   Font: Inter (tampilan, sans modern bersih) + Playfair Display (judul serif). */
 :root {
   --page: #f7f3ea;
   --raise: #fbf8f1;
@@ -18,6 +19,7 @@
   --edge: color-mix(in srgb, #004d46 14%, #f7f3ea);
   --tint: color-mix(in srgb, #004d46 9%, #f7f3ea);
   --shade: color-mix(in srgb, #004d46 8%, #f7f3ea);
+  --grid-line: rgba(9, 47, 45, 0.05);
   color-scheme: light;
 }
 
@@ -30,6 +32,7 @@
   --edge: rgba(255, 255, 255, 0.14);
   --tint: rgba(0, 77, 70, 0.45);
   --shade: #0e110f;
+  --grid-line: rgba(255, 255, 255, 0.04);
   color-scheme: dark;
 }
 
@@ -52,7 +55,7 @@
   --color-coral: #c96a55;
   --color-night: #080a09;
   --color-mist: #cbcec8;
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
 }
 
@@ -66,12 +69,13 @@ body {
   color: #092f2d;
 }
 
-/* Grid halus di hero gelap, memudar ke bawah — seperti referensi. */
+/* Grid halus di hero, memudar ke bawah — seperti referensi.
+   Garisnya mengikuti tema (gelap samar di mode terang, putih samar di mode gelap). */
 .hero-grid-overlay {
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 82px 82px;
   -webkit-mask-image: linear-gradient(#000 0%, transparent 94%);
   mask-image: linear-gradient(#000 0%, transparent 94%);

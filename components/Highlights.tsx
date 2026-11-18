@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Award, Briefcase, Store, Users } from "lucide-react";
 import { useLanguage } from "./Providers";
 
-// Kartu sorotan gelap mengikuti situs referensi: gambar gelap, ikon emas,
-// label emas huruf kapital, judul biru terang, panah di kanan atas.
+// Kartu sorotan mengikuti tema: di mode terang kartunya terang (krem) dengan
+// judul hijau, di mode gelap kartunya gelap — label emas huruf kapital,
+// panah di kanan atas.
 const icons = [Award, Briefcase, Store, Users];
 
 export default function Highlights() {
@@ -30,22 +31,22 @@ export default function Highlights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="group relative grid grid-rows-[auto_1fr] overflow-hidden rounded-[5px] border border-line bg-night text-cream transition-all duration-200 hover:-translate-y-[3px] hover:border-[#9be3a58c]"
+                className="group relative grid grid-rows-[auto_1fr] overflow-hidden rounded-[5px] border border-line bg-raise text-fg transition-all duration-200 hover:-translate-y-[3px] hover:border-gold/60"
               >
-                <div className="relative grid aspect-[16/9] place-items-center overflow-hidden border-b border-line bg-[#101512]">
-                  <Icon className="h-10 w-10 text-gold/70 transition-colors group-hover:text-gold" />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080a093d] via-transparent to-transparent" />
+                <div className="relative grid aspect-[16/9] place-items-center overflow-hidden border-b border-line bg-cream-dark">
+                  <Icon className="h-10 w-10 text-leaf/70 transition-colors group-hover:text-leaf" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
                 </div>
                 <div className="relative grid content-start justify-items-start gap-2 p-[14px_15px_16px]">
-                  <span className="grid h-[39px] w-[39px] place-items-center border border-line bg-[#151b16] text-gold">
+                  <span className="grid h-[39px] w-[39px] place-items-center border border-line bg-soft text-leaf">
                     <Icon className="h-5 w-5" />
                   </span>
                   <span className="mt-0.5 text-[8px] font-bold uppercase tracking-[1.2px] text-gold">{item.tag}</span>
-                  <strong className="text-[16px] font-bold leading-[1.35] text-[#83b6ff]">{item.title}</strong>
-                  <span className="line-clamp-3 max-w-[300px] text-[13px] leading-[1.5] text-[#a9ada6]">
+                  <strong className="text-[16px] font-bold leading-[1.35] text-leaf">{item.title}</strong>
+                  <span className="line-clamp-3 max-w-[300px] text-[13px] leading-[1.5] text-muted">
                     {item.description}
                   </span>
-                  <ArrowUpRight className="absolute right-[18px] top-[19px] h-[17px] w-[17px] text-cream transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="absolute right-[18px] top-[19px] h-[17px] w-[17px] text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>
               </motion.article>
             );
