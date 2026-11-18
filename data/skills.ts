@@ -1,4 +1,19 @@
-import { Code, Database, Brain, Users, Lightbulb, Briefcase, MessageSquare, Network, Layout, Server, Braces, Binary, Eye, Timer } from "lucide-react";
+import {
+  Brain,
+  Users,
+  Lightbulb,
+  Network,
+  Layout,
+  Server,
+  Braces,
+  Binary,
+  Eye,
+  Timer,
+  Database,
+  FileSpreadsheet,
+  Smartphone,
+  CheckCircle2,
+} from "lucide-react";
 
 export interface SkillItem {
   name: string;
@@ -19,38 +34,46 @@ export const skills: SkillCategory[] = [
       { name: "Laravel", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
       { name: "JavaScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
       { name: "TypeScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
+      { name: "Python", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
+      { name: "HTML5", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+      { name: "CSS3", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
       { name: "Tailwind CSS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Responsive Web", icon: Layout }
-    ]
+      { name: "Android Studio", icon: Smartphone },
+      { name: "Responsive Web", icon: Layout },
+    ],
   },
   {
-    category: "Database",
+    category: "Database & Data",
     skills: [
       { name: "MySQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
       { name: "PostgreSQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
-      { name: "Skema Desain", icon: Network },
+      { name: "Perancangan Skema", icon: Network },
       { name: "Normalisasi", icon: Database },
-      { name: "DBMS", icon: Server }
-    ]
+      { name: "Data Entry", icon: CheckCircle2 },
+      { name: "Data Cleaning", icon: CheckCircle2 },
+      { name: "Microsoft Excel", icon: FileSpreadsheet },
+      { name: "Google Sheets", icon: FileSpreadsheet },
+    ],
   },
   {
     category: "AI / ML",
     skills: [
       { name: "AI Engineering", icon: Brain },
-      { name: "RAG", icon: Braces },
+      { name: "Hybrid RAG", icon: Braces },
+      { name: "Chatbot", icon: Braces },
       { name: "Machine Learning", icon: Binary },
-      { name: "Klasifikasi", icon: Network },
-      { name: "Computer Vision", icon: Eye }
-    ]
+      { name: "Data Mining (K-Means)", icon: Network },
+      { name: "Computer Vision", icon: Eye },
+    ],
   },
   {
     category: "Soft Skills",
     skills: [
-      { name: "Kerja Tim", icon: Users },
+      { name: "Ketelitian & Akurasi Tinggi", icon: CheckCircle2 },
       { name: "Problem Solving", icon: Lightbulb },
-      { name: "Manajemen Proyek", icon: Briefcase },
-      { name: "Komunikasi", icon: MessageSquare },
-      { name: "Bekerja di Bawah Tekanan", icon: Timer }
-    ]
-  }
+      { name: "Kerja Sama Tim", icon: Users },
+      { name: "Manajemen Waktu", icon: Timer },
+      { name: "Kerja Mandiri", icon: Server },
+    ],
+  },
 ];

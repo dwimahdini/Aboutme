@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { useLanguage } from "./Providers";
 
 const InstagramIcon = (props: any) => (
@@ -58,6 +58,16 @@ export default function Contact() {
       hover: "hover:border-emerald-300 dark:hover:border-emerald-500/50 hover:bg-emerald-200 dark:hover:bg-emerald-500/20"
     },
     {
+      name: "WhatsApp",
+      value: "0812-1566-0192",
+      icon: Phone,
+      href: "https://wa.me/6281215660192",
+      color: "text-green-600 dark:text-green-400",
+      bg: "bg-green-100 dark:bg-green-500/10",
+      border: "border-green-200 dark:border-green-500/20",
+      hover: "hover:border-green-300 dark:hover:border-green-500/50 hover:bg-green-200 dark:hover:bg-green-500/20"
+    },
+    {
       name: t.contact.address,
       value: "Pekanbaru, Riau",
       icon: MapPin,
@@ -111,6 +121,9 @@ export default function Contact() {
 
   return (
     <section className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 mb-8 transition-colors" id="contact">
+      <p className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">{t.cta.title}</p>
+      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">{t.cta.subtitle}</h3>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">{t.cta.desc}</p>
       <div className="flex items-center gap-3 mb-8">
         <div className="p-3 bg-indigo-100 dark:bg-indigo-500/10 rounded-xl transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-600 dark:text-indigo-400"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>

@@ -5,8 +5,15 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dwi Mahdini",
-  description: "Dwi Mahdini | Developer",
+  title: "Dwi Mahdini, S.T. — Web Developer & AI Engineering",
+  description:
+    "Portfolio Dwi Mahdini: Web Developer (Next.js, Laravel) dan AI Engineering (Hybrid RAG, chatbot, Machine Learning) dari Pekanbaru, Riau. S1 Teknik Informatika UIN Suska Riau, jurnal JUPTIK terpublikasi.",
+  openGraph: {
+    title: "Dwi Mahdini, S.T. — Web Developer & AI Engineering",
+    description:
+      "Next.js · Laravel · Hybrid RAG · Machine Learning — Pekanbaru, Riau.",
+    type: "website",
+  },
 };
 
 import { Providers } from "@/components/Providers";

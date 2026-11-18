@@ -18,7 +18,7 @@ export default function Skills() {
   const getCategoryName = (originalCat: string) => {
     switch (originalCat) {
       case "WEB DEVELOPMENT": return t.skills.webDev;
-      case "DATABASE": return t.skills.database;
+      case "DATABASE & DATA": return t.skills.database;
       case "AI / ML": return t.skills.aiMl;
       case "SOFT SKILLS": return t.skills.softSkills;
       default: return originalCat;
@@ -26,8 +26,9 @@ export default function Skills() {
   };
 
   return (
-    <section className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 transition-colors">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 transition-colors">{t.skills.title}</h2>
+    <section id="skills" className="bg-white dark:bg-[#0f0f13] shadow-xl dark:shadow-none border border-gray-200 dark:border-white/5 rounded-[2rem] p-8 sm:p-10 transition-colors">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">{t.skills.title}</h2>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">{t.skills.subtitle}</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {skills.map((skillGroup, index) => (
           <motion.div
