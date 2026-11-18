@@ -158,11 +158,6 @@ export const dictionaries = {
           description:
             "Aplikasi computer vision yang membantu penyandang buta warna mengenali warna benda di sekitarnya. Proyek perkuliahan.",
         },
-        {
-          title: "K-Means: Kualitas Udara Pekanbaru",
-          description:
-            "Latihan data mining: clustering kualitas udara Pekanbaru (PM10, PM2.5, SO2, CO, O3, NO2) dengan K-Means, K=3, Min-Max + Euclidean. Bukan skripsi — hanya ilustrasi alur algoritma pada 20 data, 1–20 Jan 2024.",
-        },
       ],
     },
     highlights: {
@@ -373,11 +368,6 @@ export const dictionaries = {
           title: "Colour Recognition System for Colour-Blind Users",
           description:
             "A computer-vision app that helps colour-blind users recognise the colours of surrounding objects. Coursework project.",
-        },
-        {
-          title: "K-Means: Pekanbaru Air Quality",
-          description:
-            "A data-mining exercise: clustering Pekanbaru air quality (PM10, PM2.5, SO2, CO, O3, NO2) with K-Means, K=3, Min-Max + Euclidean. Not my thesis — only an illustration of the algorithm flow on 20 records, 1–20 Jan 2024.",
         },
       ],
     },

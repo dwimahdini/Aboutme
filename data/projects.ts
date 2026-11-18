@@ -8,7 +8,7 @@ export interface Project {
   status: "published" | "completed" | "exercise";
   featured?: boolean;
   /** Kategori untuk filter gaya Linework. */
-  category: "AI & RAG" | "Web App" | "AI / ML" | "Data";
+  category: "AI & RAG" | "Web App" | "AI / ML";
 }
 
 // URUTAN HARUS SAMA dengan dictionaries.*.projects.items
@@ -54,13 +54,5 @@ export const projects: Project[] = [
     techStack: ["Python", "OpenCV", "Computer Vision"],
     status: "completed",
     category: "AI / ML",
-  },
-  {
-    title: "K-Means: Kualitas Udara Pekanbaru",
-    description:
-      "Latihan data mining: clustering kualitas udara Pekanbaru dengan K-Means, K=3. Bukan skripsi — ilustrasi alur algoritma pada 20 data, 1–20 Jan 2024.",
-    techStack: ["Python", "K-Means", "Excel", "Data Mining"],
-    status: "exercise",
-    category: "Data",
   },
 ];

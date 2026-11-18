@@ -29,7 +29,7 @@ function initials(title: string) {
   return (words[0]?.[0] ?? "") + (words[1]?.[0] ?? "");
 }
 
-const categories = ["Semua", "AI & RAG", "Web App", "AI / ML", "Data"] as const;
+const categories = ["Semua", "AI & RAG", "Web App", "AI / ML"] as const;
 
 export default function Projects() {
   const { t, language } = useLanguage();
