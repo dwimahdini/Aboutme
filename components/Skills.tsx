@@ -9,7 +9,7 @@ const groupIcons = [Code2, Database, BrainCircuit, Users];
 const groupFills = ["bg-tomato text-art", "bg-cobalt text-art", "bg-sun text-ink", "bg-tomato text-art"];
 
 export default function Skills() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Helper to map English/Indonesian fallback for category
   const getCategoryName = (originalCat: string) => {
@@ -30,8 +30,11 @@ export default function Skills() {
           <span className="scribble">{t.skills.title}</span>
         </h2>
         <p className="mt-4 max-w-[680px] text-[15px] leading-[1.7] text-muted">{t.skills.subtitle}</p>
+        <p className="mt-3 text-[12px] font-bold uppercase tracking-[1.6px] text-muted sm:hidden">
+          {language === "id" ? "Geser → untuk melihat lainnya" : "Swipe → to see more"}
+        </p>
 
-        <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-9 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-2 sm:snap-none sm:overflow-visible sm:pb-0 lg:grid-cols-4">
           {skills.map((skillGroup, index) => {
             const GroupIcon = groupIcons[index % groupIcons.length];
             return (
@@ -41,7 +44,7 @@ export default function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="lw-card lw-card-hover p-5"
+                className="lw-card lw-card-hover w-[85%] shrink-0 snap-start p-5 sm:w-auto"
               >
                 <span className={`mb-4 grid h-11 w-11 place-items-center rounded-[10px] border-[3px] border-ink shadow-lw-sm ${groupFills[index % groupFills.length]}`}>
                   <GroupIcon className="h-5 w-5" />

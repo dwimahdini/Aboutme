@@ -20,8 +20,11 @@ export default function Highlights() {
         <h2 className="mt-3 font-display text-[clamp(34px,5vw,56px)] font-extrabold leading-[1.02] tracking-[-0.02em] text-ink">
           <span className="scribble">{t.highlights.title}</span>
         </h2>
+        <p className="mt-3 text-[12px] font-bold uppercase tracking-[1.6px] text-muted md:hidden">
+          {language === "id" ? "Geser → untuk melihat lainnya" : "Swipe → to see more"}
+        </p>
 
-        <div className="mt-9 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-9 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-2 md:snap-none md:overflow-visible md:pb-0 lg:grid-cols-4">
           {t.highlights.items.map((item, index) => {
             const Icon = icons[index % icons.length];
             return (
@@ -31,7 +34,7 @@ export default function Highlights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="lw-card lw-card-hover group relative grid grid-rows-[auto_1fr] overflow-hidden"
+                className="lw-card lw-card-hover group relative grid w-[85%] shrink-0 snap-start grid-rows-[auto_1fr] overflow-hidden sm:w-[70%] md:w-auto"
               >
                 <div className="relative grid aspect-[16/9] place-items-center overflow-hidden border-b-[3px] border-ink bg-paper-2">
                   <Icon className="h-12 w-12 text-ink/80 transition-transform group-hover:-rotate-6 group-hover:scale-110" />

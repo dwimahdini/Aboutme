@@ -74,8 +74,11 @@ export default function Projects() {
             ? `Menampilkan ${visible.length} dari ${projects.length} proyek`
             : `Showing ${visible.length} of ${projects.length} projects`}
         </p>
+        <p className="mt-2 text-[12px] font-bold uppercase tracking-[1.6px] text-muted md:hidden">
+          {language === "id" ? "Geser → untuk melihat lainnya" : "Swipe → to see more"}
+        </p>
 
-        <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-2 md:snap-none md:overflow-visible md:pb-0 lg:grid-cols-3">
           {visible.map(({ project, i }) => (
             <motion.article
               key={project.title}
@@ -83,7 +86,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.08 }}
-              className={`lw-card lw-card-hover group overflow-hidden ${project.featured ? "lg:col-span-2" : ""}`}
+              className={`lw-card lw-card-hover group w-[85%] shrink-0 snap-start overflow-hidden sm:w-[70%] md:w-auto ${project.featured ? "lg:col-span-2" : ""}`}
             >
               <div className="relative grid h-[170px] place-items-center overflow-hidden border-b-[3px] border-ink bg-paper-2">
                 <span className={`font-display text-[64px] font-extrabold leading-none ${initialColors[i % initialColors.length]}`} aria-hidden="true">

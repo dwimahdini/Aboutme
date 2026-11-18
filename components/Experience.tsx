@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase, Users, GraduationCap, Award } from "lucide-react";
 import { experience, education } from "@/data/experience";
@@ -35,7 +36,9 @@ function TimelineList({ items, dictItems, icon: Icon, fill }: { items: typeof ex
 }
 
 export default function Experience() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // Di HP hanya 2 sertifikat yang tampil dulu, sisanya lewat tombol "Lihat semua".
+  const [showAllCerts, setShowAllCerts] = useState(false);
   const work = experience.filter((e) => e.type === "Work");
   const org = experience.filter((e) => e.type === "Organization");
 
@@ -125,7 +128,7 @@ export default function Experience() {
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {certifications.map((cert: any, index) => (
-                <div key={index} className="lw-card p-4">
+                <div key={index} className={`lw-card p-4 ${index >= 2 && !showAllCerts ? "hidden sm:block" : ""}`}>
                   <span className="mb-3 grid h-9 w-9 place-items-center rounded-[10px] border-[3px] border-ink bg-tomato text-art shadow-lw-sm">
                     <Award className="h-4 w-4" />
                   </span>
@@ -156,6 +159,17 @@ export default function Experience() {
                 </div>
               ))}
             </div>
+            <button
+              onClick={() => setShowAllCerts((v) => !v)}
+              className="btn-lw btn-paper mt-4 w-full sm:hidden"
+              aria-expanded={showAllCerts}
+            >
+              {showAllCerts
+                ? (language === "id" ? "Tampilkan lebih sedikit" : "Show less")
+                : (language === "id"
+                    ? `Lihat semua sertifikat (${certifications.length})`
+                    : `See all certificates (${certifications.length})`)}
+            </button>
           </motion.div>
         </div>
       </div>
