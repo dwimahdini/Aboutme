@@ -38,7 +38,7 @@ export default function About() {
   const { t } = useLanguage();
 
   return (
-    <section aria-label="Highlights" className="bg-cream px-6 pb-4 pt-10">
+    <section aria-label="Highlights" className="bg-page px-6 pb-4 pt-10">
       <div className="mx-auto w-full max-w-[1160px] border-t border-line pt-8">
         <div className="flex flex-wrap gap-x-12 gap-y-6">
           {t.hero.stats.map((stat, index) => {
@@ -53,7 +53,7 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
               >
-                <p className="font-serif text-[40px] font-bold leading-none text-pine">
+                <p className="font-serif text-[40px] font-bold leading-none text-leaf">
                   <CountUp value={num} suffix={suffix} />
                 </p>
                 <p className="mt-2 max-w-[190px] text-[13px] leading-snug text-muted">{stat.label}</p>

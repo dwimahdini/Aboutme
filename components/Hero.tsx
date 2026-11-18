@@ -109,17 +109,17 @@ export default function Hero() {
       </section>
 
       {/* Strip profil di bawah hero — seperti situs referensi. */}
-      <div className="bg-cream px-6">
-        <div className="mx-auto mt-8 w-[min(1160px,100%-48px)] rounded-[4px] border border-line bg-[#fbf8f1] p-5 shadow-none sm:p-6">
+      <div className="bg-page px-6">
+        <div className="mx-auto mt-8 w-[min(1160px,100%-48px)] rounded-[4px] border border-line bg-raise p-5 shadow-none sm:p-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {strip.map((item) => (
               <div key={item.label} className="flex items-start gap-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-soft text-pine">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-soft text-leaf">
                   <item.icon className="h-[18px] w-[18px]" />
                 </span>
                 <div>
                   <p className="text-[9px] font-bold uppercase tracking-[1.4px] text-gold">{item.label}</p>
-                  <p className="mt-1 text-[15px] font-bold text-ink">{item.value}</p>
+                  <p className="mt-1 text-[15px] font-bold text-fg">{item.value}</p>
                   <p className="mt-0.5 text-[12px] text-muted">{item.sub}</p>
                 </div>
               </div>

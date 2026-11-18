@@ -11,12 +11,12 @@ export default function Process() {
   const steps = t.process.steps;
 
   return (
-    <section className="bg-cream px-6 py-[30px]">
+    <section className="bg-page px-6 py-[30px]">
       <div className="mx-auto w-full max-w-[1160px] border-t border-line pb-[45px] pt-[90px]">
         <span className="block text-[9px] font-bold uppercase tracking-[1.5px] text-gold">
           {t.process.eyebrow}
         </span>
-        <h2 className="mb-[11px] mt-2 font-sans text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.045em] text-ink">
+        <h2 className="mb-[11px] mt-2 font-sans text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.045em] text-fg">
           {t.process.title}
         </h2>
         <p className="mb-[30px] max-w-[680px] text-[14px] leading-[1.7] text-muted">{t.process.desc}</p>
@@ -35,12 +35,12 @@ export default function Process() {
                   0{index + 1}
                 </span>
                 <div>
-                  <h3 className="font-serif text-[15px] font-bold text-pine lg:mt-3">{step.title}</h3>
+                  <h3 className="font-serif text-[15px] font-bold text-leaf lg:mt-3">{step.title}</h3>
                   <p className="mt-1 max-w-[220px] text-[13px] leading-[1.5] text-muted lg:max-w-[160px]">{step.desc}</p>
                 </div>
               </motion.div>
               {index < steps.length - 1 && (
-                <span className="hidden pt-2 text-ink lg:grid lg:place-items-start lg:justify-center" aria-hidden="true">
+                <span className="hidden pt-2 text-fg lg:grid lg:place-items-start lg:justify-center" aria-hidden="true">
                   <ArrowRight className="h-[18px] w-[18px]" />
                 </span>
               )}

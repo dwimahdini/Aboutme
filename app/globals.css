@@ -1,10 +1,49 @@
 @import "tailwindcss";
 
+/* Varian dark untuk next-themes (class="dark" di <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Design system mengikuti situs referensi:
-   krem #f7f3ea, hijau tua #004d46, tinta #092f2d,
+   Terang: krem #f7f3ea, hijau tua #004d46, tinta #092f2d,
    emas #d6a84f, koral #c96a55, malam #080a09.
+   Gelap: permukaan malam #080a09, teks krem, hijau terang #57b8a6
+   untuk teks hijau, garis dan tint hijau yang disesuaikan.
    Font: DM Sans (tampilan) + Playfair Display (judul serif). */
+:root {
+  --page: #f7f3ea;
+  --raise: #fbf8f1;
+  --fg: #092f2d;
+  --leaf: #004d46;
+  --faint: color-mix(in srgb, #092f2d 70%, #f7f3ea);
+  --edge: color-mix(in srgb, #004d46 14%, #f7f3ea);
+  --tint: color-mix(in srgb, #004d46 9%, #f7f3ea);
+  --shade: color-mix(in srgb, #004d46 8%, #f7f3ea);
+  color-scheme: light;
+}
+
+:root.dark {
+  --page: #080a09;
+  --raise: #101512;
+  --fg: #f6f5f1;
+  --leaf: #57b8a6;
+  --faint: #a9ada6;
+  --edge: rgba(255, 255, 255, 0.14);
+  --tint: rgba(0, 77, 70, 0.45);
+  --shade: #0e110f;
+  color-scheme: dark;
+}
+
 @theme inline {
+  /* Token yang mengikuti tema (berubah saat .dark aktif). */
+  --color-page: var(--page);
+  --color-raise: var(--raise);
+  --color-fg: var(--fg);
+  --color-leaf: var(--leaf);
+  --color-muted: var(--faint);
+  --color-line: var(--edge);
+  --color-soft: var(--tint);
+  --color-cream-dark: var(--shade);
+  /* Token tetap — sama di kedua tema. */
   --color-cream: #f7f3ea;
   --color-paper: #f7f3ea;
   --color-ink: #092f2d;
@@ -13,17 +52,13 @@
   --color-coral: #c96a55;
   --color-night: #080a09;
   --color-mist: #cbcec8;
-  --color-line: color-mix(in srgb, #004d46 14%, #f7f3ea);
-  --color-soft: color-mix(in srgb, #004d46 9%, #f7f3ea);
-  --color-cream-dark: color-mix(in srgb, #004d46 8%, #f7f3ea);
-  --color-muted: color-mix(in srgb, #092f2d 70%, #f7f3ea);
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-ink);
+  background: var(--color-page);
+  color: var(--color-fg);
 }
 
 ::selection {

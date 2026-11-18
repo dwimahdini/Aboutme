@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, X, Download } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X, Download, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useLanguage } from "./Providers";
 
 // Topbar tetap di atas, gelap dengan blur — seperti situs referensi.
 export default function Navbar() {
   const { t, language, setLanguage } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const links = [
     { href: "#about", label: t.nav.about },
@@ -46,6 +53,14 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="grid h-[34px] w-[34px] place-items-center rounded-[5px] border border-white/20 text-[#cbcec8] transition-colors hover:border-gold hover:text-gold"
+            title={mounted && theme === "dark" ? "Mode terang / Light mode" : "Mode gelap / Dark mode"}
+            aria-label="Ganti tema gelap / terang"
+          >
+            {mounted && theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
           <button
             onClick={() => setLanguage(language === "id" ? "en" : "id")}
             className="rounded-[5px] border border-white/20 px-2.5 py-2 text-[11px] font-bold uppercase text-[#cbcec8] transition-colors hover:border-gold hover:text-gold"

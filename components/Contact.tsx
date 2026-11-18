@@ -48,7 +48,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="bg-cream px-6 py-[30px]">
+    <section id="contact" className="bg-page px-6 py-[30px]">
       <div className="mx-auto w-full max-w-[1160px]">
         <div className="flex flex-col justify-between gap-6 overflow-hidden rounded-[6px] bg-pine p-[26px] text-cream md:flex-row md:items-center">
           <div>
@@ -68,7 +68,7 @@ export default function Contact() {
           </a>
         </div>
 
-        <h2 className="mb-2 mt-10 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+        <h2 className="mb-2 mt-10 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-leaf">
           {t.contact.title}
         </h2>
         <p className="mb-6 max-w-[680px] text-[14px] leading-[1.7] text-muted">{t.contact.desc}</p>
@@ -86,12 +86,12 @@ export default function Contact() {
                 href={contact.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-[4px] border border-line bg-cream p-3 transition-colors hover:border-gold/60"
+                className="flex items-center gap-3 rounded-[4px] border border-line bg-page p-3 transition-colors hover:border-gold/60"
               >
-                <contact.icon className="h-5 w-5 shrink-0 text-pine" />
+                <contact.icon className="h-5 w-5 shrink-0 text-leaf" />
                 <span className="grid min-w-0 gap-1">
                   <small className="text-[10px] font-semibold uppercase tracking-wide text-muted">{contact.name}</small>
-                  <strong className="truncate text-[13px] font-semibold text-ink">{contact.value}</strong>
+                  <strong className="truncate text-[13px] font-semibold text-fg">{contact.value}</strong>
                 </span>
               </a>
             </motion.div>

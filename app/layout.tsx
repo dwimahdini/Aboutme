@@ -25,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
-      <body className={`${dmSans.variable} ${playfair.variable} bg-cream font-sans text-ink antialiased`}>
+    <html lang="id" suppressHydrationWarning>
+      <body className={`${dmSans.variable} ${playfair.variable} bg-page font-sans text-fg antialiased`}>
         <LenisProvider>
           <Providers>
             <main>{children}</main>

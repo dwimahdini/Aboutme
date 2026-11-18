@@ -13,10 +13,10 @@ export default function Highlights() {
   const eyebrow = language === "id" ? "Sorotan Portfolio" : "Portfolio Highlights";
 
   return (
-    <section className="bg-cream px-6 py-[30px]">
+    <section className="bg-page px-6 py-[30px]">
       <div className="mx-auto w-full max-w-[1160px]">
         <span className="block text-[10px] font-bold uppercase tracking-[1.5px] text-coral">{eyebrow}</span>
-        <h2 className="mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-pine">
+        <h2 className="mt-2 font-serif text-[clamp(28px,4vw,42px)] font-semibold leading-[1.1] tracking-[-0.02em] text-leaf">
           {t.highlights.title}
         </h2>
 
