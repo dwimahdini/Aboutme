@@ -8,13 +8,12 @@ import Highlights from "@/components/Highlights";
 import Publications from "@/components/Publications";
 import Process from "@/components/Process";
 import TechStrip from "@/components/TechStrip";
-import Quote from "@/components/Quote";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 // Urutan mengikuti struktur Linework (uicookies.com):
 // Hero → angka → proyek (filter) → wordmark teknologi → sorotan →
-// skill → pengalaman → publikasi → proses → kutipan → CTA kontak.
+// skill → pengalaman → publikasi → proses → CTA kontak.
 // (Tanpa seksi layanan/toko — ini portfolio, bukan promosi.)
 export default function Home() {
   return (
@@ -29,7 +28,6 @@ export default function Home() {
       <Experience />
       <Publications />
       <Process />
-      <Quote />
       <Contact />
       <Footer />
     </>

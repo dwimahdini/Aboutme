@@ -58,9 +58,6 @@ export default function Hero() {
             <h1 className="font-display text-[clamp(56px,8vw,104px)] font-extrabold leading-[0.95] tracking-[-0.03em] text-ink">
               Dwi <span className="scribble">Mahdini</span>
             </h1>
-            <p className="mt-5 font-display text-[19px] font-bold leading-snug text-tomato-deep">
-              {t.hero.tagline}
-            </p>
             <p className="mt-2 text-[15px] font-bold text-ink">
               {t.hero.badge} · {t.hero.location}
             </p>
@@ -125,7 +122,7 @@ export default function Hero() {
                 />
               </div>
               <p className="pt-3 text-center text-[11px] font-bold uppercase tracking-[1.6px] text-muted">
-                Dwi Mahdini — DM·01
+                Dwi Mahdini
               </p>
             </div>
           </motion.div>

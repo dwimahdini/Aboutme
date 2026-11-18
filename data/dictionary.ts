@@ -18,7 +18,6 @@ export const dictionaries = {
     hero: {
       greeting: "Hai, saya",
       role: "WEB DEVELOPER · AI ENGINEERING",
-      tagline: "Ide yang dipikirkan matang. Software yang berguna.",
       badge: "Fresh Graduate",
       location: "Pekanbaru, Riau — terbuka untuk kerja full-time & freelance",
       contactBtn: "KONTAK SAYA",
@@ -235,7 +234,6 @@ export const dictionaries = {
     hero: {
       greeting: "Hi, I'm",
       role: "WEB DEVELOPER · AI ENGINEERING",
-      tagline: "Thoughtful ideas. Useful software.",
       badge: "Fresh Graduate",
       location: "Pekanbaru, Riau — open to full-time work & freelance",
       contactBtn: "CONTACT ME",
